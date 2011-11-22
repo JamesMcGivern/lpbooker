@@ -1,0 +1,10 @@
+{
+    "id":0,
+    "name":"Cremin Apartments",
+    "price":253,
+    "attributes":["internet","bath","24 reception","phone","gym"],
+    "capacity":{
+        "total":37,
+        "free":36
+    }
+}

@@ -1,0 +1,14 @@
+== Usage Instructions ==
+
+The lpbooker app is written in Groovy and therefore requires Java to be installed on the path. A Groovy install is not requited to run the app.
+
+list traveller bookings:
+    java -jar lpbooker.jar traveller -accommdation <path to accommodation.json> -accommdation <path to accommodation.json> -id <traveller id>
+
+list accommodation bookings:
+    java -jar lpbooker.jar accommodation -accommdation <path to accommodation.json> -accommdation <path to accommodation.json> -id <accommodation id>
+
+search for accommodation:
+    java -jar lpbooker.jar search -accommdation <path to accommodation.json> -accommdation <path to accommodation.json> -price <min> <max> -attributes "<attribute one>","<attribute two>",...
+
+== Notes On The Solution ==

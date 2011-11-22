@@ -1,0 +1,9 @@
+{
+    "id":0,
+    "name":"Mrs. Tess Goyette",
+    "priceRange":{
+        "min":86,
+        "max":87
+    },
+    "requirements":["close to transport","internet","bath","gym"]
+}

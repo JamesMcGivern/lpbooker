@@ -1,0 +1,22 @@
+[
+    {
+        "id":0,
+        "name":"Cremin Apartments",
+        "price":253,
+        "attributes":["internet","bath","24 reception","phone","gym"],
+        "capacity":{
+            "total":37,
+            "free":36
+        }
+    },
+    {
+        "id":1,
+        "name":"Simonis Campsite",
+        "price":72,
+        "attributes":["restaurant","room service","gym","meeting rooms","quiet"],
+        "capacity":{
+            "total":96,
+            "free":74
+        }
+    }
+]
