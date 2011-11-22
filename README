@@ -12,3 +12,32 @@ search for accommodation:
     java -jar lpbooker.jar search -accommdation <path to accommodation.json> -accommdation <path to accommodation.json> -price <min> <max> -attributes "<attribute one>","<attribute two>",...
 
 == Notes On The Solution ==
+
+This application was design with the requirements squarely in mind, and hence where in normal situations this might be considered the starting
+point for a RESTful web service, or webapp, the aim was to deliver a command line application which was flexible enough to be extended beyond this
+prototype. In the same vein since the application consists of a few services and handful of model classes, burdening the build and deployment
+footprint with a dependency injection framework like Spring seemed excessive. However adding such a framework, along with controllers and
+web service endpoints to expose the functionality as a web app would present little effort.
+
+1. Memory Performance
+
+This implementation is extremely resource heavy as it uses a set of in-memory structures to store accommodation, traveller and booking data. Under
+other circumstances using a full fledged datastore such as a SQL or NoSQL database. Useful as this would be in helping reduce the memory
+footprint, the current search algorithm iterates over each accommodation entry, this would mean either loading the entire dataset in to memory,
+or processing the entries in batches. A better alternative would be to replace the search algorithm with a search engine such as Solr/Lucene
+which is dedicated to the purpose and can be separately tuned for performance. One problem with using multiple datastores in tandem, as
+outlined, is deciding upon speed of propagation of updates; a frequently used strategy is eventual consistency, meaning updates may be
+applied to one store later than another, but whatever strategy chosen measures must be taken to ensure the data is "live" at the
+appropriate times - such as whether an accommodation has free capacity when booking.
+
+2. Speed
+Parsing and loading the json data in to the application is fairly quick for moderately sized files (i.e can be opened with a general text editor),
+however once the traveller data is loaded each the application executes a search for accommodation for each traveller, this entails iterating
+through the entire list of accommodations for each traveller, meaning A * T evaluations or polynomial complexity. This would likely be improved
+significantly if the change in datastores outlined above were implemented and in addition modify the autobooking so that using some
+concurrency mechanism execute multiple accommodation searches at once, which return a ranked list of accommodations rather than a singlar
+one. The travellers are still processed in the order they are declared but some data will be fetched before it is needed (something like the
+producer-consumer pattern), then when booking should the highest ranking accommodation for a traveller no longer have free capacity
+the other results can be tried in descending rank.
+
+
